@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Braid Atlas — Proposition 6.7</title>
+  <meta name="description" content="An interactive, source-available walkthrough of a counterexample to the unequal-count conclusion of Proposition 6.7." />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">≋</span><span>BRAID <strong>ATLAS</strong></span></div>
+    <div class="header-right"><span class="research-chip"><span class="chip-dot"></span> INTERACTIVE PROOF REVIEW</span><a class="header-link" href="https://arxiv.org/abs/2607.05283" target="_blank" rel="noopener noreferrer">Read paper ↗</a></div>
+  </header>
+  <main class="page">
+    <section class="intro">
+      <div class="intro-copy"><div class="eyebrow"><span class="accent-line"></span> 4-STRAND BURAU REPRESENTATION · V2 REVIEW</div>
+        <h1>Where the proof <em>breaks.</em></h1>
+        <p>Trace an explicit 26-letter braid through the proposed proof of Proposition 6.7. Inspect the factorization, verify Burau matrices exactly, and test why parity forces an equality the proposition tries to avoid.</p>
+        <div class="intro-actions"><button type="button" class="button primary" id="jump-failure">Jump to the failure <span aria-hidden="true">↗</span></button><button type="button" class="button ghost" id="jump-lab">Open braid lab <span aria-hidden="true">↘</span></button></div>
+      </div>
+      <div class="intro-visual">
+        <div class="visual-top"><span>26 CROSSINGS · 4 STRANDS</span><span class="orbit-label">FIG. A</span></div>
+        <svg id="hero-braid" viewBox="0 0 370 270" role="img" aria-label="Stylized four strand braid diagram"></svg>
+        <div class="visual-bottom"><span>σ₁ · σ₂ · σ₃</span><span>ARTIN GENERATORS</span></div>
+      </div>
+    </section>
+    <section class="status-grid" aria-label="Proof status summary">
+      <article class="mini-card"><span>EXPLICIT WORD</span><strong>26 <small>letters</small></strong><p>Artin generators of B₄</p></article>
+      <article class="mini-card"><span>SPECIALIZATION</span><strong>R₄(−1) = I</strong><p>Exact 4 × 4 calculation</p></article>
+      <article class="mini-card"><span>GEOMETRIC COUNT</span><strong>260</strong><p>Raw crossings = minimal</p></article>
+      <article class="mini-card"><span>PROPOSITION 6.7</span><strong class="error-color">Contradiction</strong><p>With both parity conditions</p></article>
+    </section>
+    <section class="walkthrough" id="walkthrough">
+      <div class="section-top"><div><span class="section-kicker">THE ARGUMENT / STEP BY STEP</span><h2>Follow the logic</h2></div><div class="step-count"><span id="step-count">01</span><span> / 06</span></div></div>
+      <nav class="step-strip" aria-label="Walkthrough steps" id="step-tabs"></nav>
+      <div class="main-panel"><div class="panel-heading"><div><span class="panel-kicker" id="panel-kicker">STEP 01</span><h3 id="panel-title">The input braid</h3></div><span class="panel-label" id="panel-label">INPUT</span></div><div id="step-content" aria-live="polite"></div>
+        <div class="step-controls"><button class="button ghost small" id="prev-step">← Previous</button><button class="button primary small" id="next-step">Next step →</button></div></div>
+    </section>
+    <section class="lab" id="lab"><div class="section-top"><div><span class="section-kicker">REPRODUCIBLE / EXACT ARITHMETIC</span><h2>Braid lab</h2></div><span class="verified"><span class="status-tick">✓</span> Browser-calculated</span></div>
+      <div class="lab-layout"><div class="lab-left card-surface"><div class="field-heading"><h3>Standard-generator word</h3><button id="reset-word" class="text-button">Reset word ↺</button></div><label for="braid-input" class="field-hint">Use signed generator indices −3…3 (excluding 0), separated by spaces, or expressions like <code>s2^-2 s1^3</code>.</label><textarea id="braid-input" rows="4" spellcheck="false"></textarea><div class="small-row"><span id="word-feedback" class="feedback"></span><button id="copy-word" class="text-button">Copy word ⧉</button></div>
+        <div class="prefix-head"><label for="prefix-range">Animated prefix</label><strong id="prefix-display">26 / 26</strong></div><input type="range" id="prefix-range" min="0" max="26" value="26" step="1"/><div class="strand-box"><svg id="lab-braid" viewBox="0 0 410 360" role="img" aria-label="Braid strand diagram for entered word"></svg></div><p class="annotation">Schematic crossing visualization; exact matrix checks are independent of the rendering.</p>
+      </div><div class="lab-right card-surface"><div class="field-heading"><h3>Burau representation</h3><span class="exact-chip">EXACT RATIONALS</span></div><div class="segmented" role="group" aria-label="Specialization"><button id="t-minus" data-t="-1" class="selected">t = −1</button><button id="t-two" data-t="2">t = 2</button></div><p id="matrix-caption" class="matrix-caption">Unreduced Burau matrix at t = −1</p><div id="matrix-grid" class="matrix-grid" role="table" aria-label="Burau matrix"></div><div id="matrix-status" class="matrix-status"></div><div class="lab-notes"><h4>What this calculation does—and doesn't—prove</h4><p id="lab-interpretation">At t = −1 the full 26-letter braid acts as the identity, even though its generic Burau matrix is not the identity.</p></div><button class="button ghost full-width" id="download-check">Download this matrix check (.json) ↓</button></div></div>
+    </section>
+    <section class="foot-note"><div><span class="section-kicker">SCOPE / EVIDENCE</span><h3>Counterexample to an intermediate proposition, not to faithfulness.</h3><p>The calculation proves the obstruction to requiring both parity conditions and unequal geometric counts. The geometric proper-product certificate applies to the supplied original word. Editing the word in the lab does not automatically prove the geometric hypothesis for the new word.</p></div><div class="links"><a href="https://arxiv.org/abs/2607.05283" target="_blank" rel="noopener noreferrer">arXiv:2607.05283 ↗</a><a href="#walkthrough">Back to walkthrough ↑</a></div></section>
+  </main>
+  <footer class="site-footer"><span>BRAID ATLAS <span class="subdued">/ reconstructed independent source</span></span><span>Research visualization · arithmetic can be reproduced locally</span></footer>
+</body>
+</html>
